@@ -12,9 +12,12 @@ class Generator(nn.Module):
             nn.Tanh()
         )
     
-     def basicBlock(self,inChannels,outChannels,kernelSize,stride=1,padding=1):
+    def basicBlock(self,inChannels,outChannels,kernelSize=4,stride=2,padding=1):
         return nn.Sequential(
             nn.ConvTranspose2d(inChannels,outChannels,kernelSize,stride,padding,bias=False),
             nn.BatchNorm2d(outChannels),
             nn.ReLU()
         )
+
+    def forward(self,X):
+        return self.layers(X)
